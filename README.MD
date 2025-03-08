@@ -49,4 +49,3 @@ Este projeto combina **ASP.NET Core** e **React** para criar uma aplicação ful
 
 Este projeto oferece uma experiência prática na construção de uma aplicação moderna utilizando **ASP.NET Core e React**, cobrindo desde a arquitetura até a interface do usuário. Com essa base, é possível desenvolver aplicações escaláveis, organizadas e fáceis de manter.
 
-gerar
