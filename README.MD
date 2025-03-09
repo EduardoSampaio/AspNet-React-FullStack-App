@@ -33,14 +33,8 @@ Este projeto combina **ASP.NET Core** e **React** para criar uma aplicação ful
 
    - Instalar o .NET SDK
    - Criar o projeto usando DotNet CLI
-   - Configurar a autenticação e banco de dados
 
-2. **Configurar o Frontend (React + TypeScript)**:
-
-   - Criar o projeto usando `create-react-app`
-   - Instalar dependências necessárias (`react-router-dom`, `react-hook-form`, `zod`, etc.)
-
-3. **Executar a Aplicação**:
+2. **Executar a Aplicação**:
 
    - Rodar o backend: `dotnet run`
    - Rodar o frontend: `npm start`
