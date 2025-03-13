@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Este projeto combina **ASP.NET Core** e **React** para criar uma aplicação full-stack baseada em Clean Architecture, CQRS e o padrão Mediator. O objetivo é fornecer um código bem estruturado, modular e fácil de manter, aprimorando o conhecimento em ambas as tecnologias.
+Este projeto combina **ASP.NET Core** e **React 19** para criar uma aplicação full-stack baseada em Clean Architecture, CQRS e o padrão Mediator. O objetivo é fornecer um código bem estruturado, modular e fácil de manter, aprimorando o conhecimento em ambas as tecnologias.
 
 ## Tecnologias Utilizadas
 
