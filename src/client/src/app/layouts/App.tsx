@@ -36,6 +36,23 @@ function App() {
         setEditMode(false);
     }
 
+    const hadleSubmit = (activity: Activity) => {
+        if(activity.id) {
+            setActivities(acitivities.map(x => x.id === activity.id ? activity : x));
+            //axios.put(`https://localhost:5001/api/activities/${activity.id}`, activity);
+        } else {
+            //axios.post("https://localhost:5001/api/activities", activity);
+            const newActivity = {...activity, id: acitivities.length.toString()}
+            setSelectedActivity(newActivity);
+            setActivities([...acitivities, newActivity]);
+        }
+        setEditMode(false);
+    }
+
+    const handleDelete = (id: string) => {
+        setActivities(acitivities.filter(x => x.id !== id));
+    }
+
     return (
         <Box sx={{bgcolor: '#eeeeee'}}>
             <CssBaseline />
@@ -49,6 +66,8 @@ function App() {
                     editMode={editMode}
                     openForm={handleOpenForm}
                     closeForm={handleCloseForm}
+                    submitForm={hadleSubmit}
+                    deleteActivity={handleDelete}
                 />
             </Container>
         </Box>
