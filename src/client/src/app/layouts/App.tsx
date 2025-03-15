@@ -1,25 +1,19 @@
-import { useEffect, useState } from "react";
-import "./styles.css";
-import { Box, Container, CssBaseline } from "@mui/material";
-import axios from "axios";
+import { useState } from "react";
+import { Box, Container, CssBaseline, Typography } from "@mui/material";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 
+import "./styles.css";
+import { useActivities } from "../../lib/hooks/useActivities";
+
 function App() {
-    const [acitivities, setActivities] = useState<Activity[]>([]);
-    const [selectedActivity, setSelectedActivity] = useState<Activity |  undefined>(undefined);
+    const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
     const [editMode, setEditMode] = useState(false);
 
-    useEffect(() => {
-        axios
-            .get<Activity[]>("https://localhost:5001/api/activities")
-            .then((response) => setActivities(response.data));
-
-        return () => {};
-    }, []);
+    const { activities, isPending } = useActivities();
 
     const handleSelectActivity = (id: string) => {
-        setSelectedActivity(acitivities.find(x => x.id === id));
+        setSelectedActivity(activities!.find(x => x.id === id));
     }
 
     const handleCancelSelectActivity = () => {
@@ -27,48 +21,38 @@ function App() {
     }
 
     const handleOpenForm = (id?: string) => {
-        if(id) setSelectedActivity(acitivities.find(x => x.id === id));
-        else handleCancelSelectActivity();
         setEditMode(true);
+        if (id){
+            setSelectedActivity(activities!.find(x => x.id === id));
+        }
+        else{
+            handleCancelSelectActivity();
+        }
+        
     }
 
     const handleCloseForm = () => {
         setEditMode(false);
     }
 
-    const hadleSubmit = (activity: Activity) => {
-        if(activity.id) {
-            setActivities(acitivities.map(x => x.id === activity.id ? activity : x));
-            //axios.put(`https://localhost:5001/api/activities/${activity.id}`, activity);
-        } else {
-            //axios.post("https://localhost:5001/api/activities", activity);
-            const newActivity = {...activity, id: acitivities.length.toString()}
-            setSelectedActivity(newActivity);
-            setActivities([...acitivities, newActivity]);
-        }
-        setEditMode(false);
-    }
-
-    const handleDelete = (id: string) => {
-        setActivities(acitivities.filter(x => x.id !== id));
-    }
-
     return (
-        <Box sx={{bgcolor: '#eeeeee'}}>
+        <Box sx={{ bgcolor: '#eeeeee', minHeight: '100vh' }}>
             <CssBaseline />
             <NavBar openForm={handleOpenForm}></NavBar>
             <Container maxWidth="xl" sx={{ mt: 3 }}>
-                <ActivityDashboard
-                    acitivities={acitivities}
-                    selectActivity={handleSelectActivity}
-                    cancelSelectActivity={handleCancelSelectActivity}
-                    selectedActivity={selectedActivity}
-                    editMode={editMode}
-                    openForm={handleOpenForm}
-                    closeForm={handleCloseForm}
-                    submitForm={hadleSubmit}
-                    deleteActivity={handleDelete}
-                />
+                {!activities || isPending ? (
+                    <Typography variant="h1">Loading...</Typography>
+                ) : (
+                    <ActivityDashboard
+                        acitivities={activities}
+                        selectActivity={handleSelectActivity}
+                        cancelSelectActivity={handleCancelSelectActivity}
+                        selectedActivity={selectedActivity}
+                        editMode={editMode}
+                        openForm={handleOpenForm}
+                        closeForm={handleCloseForm}
+                    />
+                )}
             </Container>
         </Box>
     );
