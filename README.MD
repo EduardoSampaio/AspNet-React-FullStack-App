@@ -12,7 +12,7 @@ Este projeto combina **ASP.NET Core** e **React 19** para criar uma aplicação 
 - **ASP.NET Core Identity**: Para autenticação e gerenciamento de usuários.
 - **React Router**: Para navegação entre páginas no frontend.
 - **AutoMapper**: Para simplificação do mapeamento de objetos no backend.
-- **Semantic UI**: Para estilização e criação de uma UI atraente.
+- **Material UI**: Para estilização e criação de uma UI atraente.
 - **React Hook Form + Zod**: Para criar formulários reutilizáveis com validação eficiente.
 - **SignalR**: Para comunicação em tempo real, como chat ao vivo.
 - **Paging, Sorting e Filtering**: Para gerenciamento eficiente de grandes volumes de dados.

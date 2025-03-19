@@ -1,6 +1,7 @@
 import { Grid2, Typography } from "@mui/material";
 import ActivityList from "./ActivityList";
 import { useActivities } from "../../../lib/hooks/useActivities";
+import ActivityFilters from "./ActivityFilters";
 
 
 
@@ -14,8 +15,8 @@ export default function ActivityDashboard() {
             <Grid2 size={7}>
                 <ActivityList />
             </Grid2>
-            <Grid2 size={5}>  
-
+            <Grid2 size={4}>  
+                <ActivityFilters />
             </Grid2>
         </Grid2>
     );
