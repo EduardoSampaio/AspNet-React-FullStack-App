@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 import "./styles.css";
 import { Outlet, useLocation } from "react-router";
-import HomePage from "../../features/activities/home/HomePage";
+import HomePage from "../../features/home/HomePage";
 
 
 function App() {
